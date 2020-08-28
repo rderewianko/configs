@@ -1,0 +1,5 @@
+
+
+for i in `cat servers-as-on-Aug-18-2020.txt`; do echo "==== settting tag for $i ========"; nova server-tag-set $i Owned_By=AjayKumarTiwari@fico.com Lease_End_On=12-2025; done
+
+for i in `cat servers-as-on-Aug-18-2020.txt`; do echo "Tag list for $i"; nova server-tag-list $i; done

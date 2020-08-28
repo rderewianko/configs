@@ -1,0 +1,56 @@
+file:\/var\/log\/httpd24\/* && !("/service-status") && !("MAIL/EXPN/VRFY/ETRN")
+
+level:6 && !(file:\/var\/log\/httpd24\/* || file:"\/var\/log\/tomcat7\/localhost_access_log..txt" || file:"\/var\/log\/tomcat7\/catalina.log" || file:"\/var\/log\/tomcat7\/catalina.out" || file:"\/var\/log\/tomcat7\/localhost.log") && !(type:system || type:mail || type:sudo || type:syslog || type:memcache )
+
+
+
+level:6 && file:\/var\/log\/tomcat7\/fico* && !(type:system || type:mail || type:sudo || type:syslog || type:memcache )
+
+
+file:\/var\/log\/tomcat7\/fac-*.log && log_level:ERROR
+
+file:\/var\/log\/tomcat7\/fac-*.log && log_level:ERROR && "Connect to marketplace.ficoanalyticcloud.com:443 [marketplace.ficoanalyticcloud.com/45.60.12.108] failed: Connection refused"
+
+file:\/var\/log\/tomcat7\/fac-*.log && log_level:ERROR && "Connect to marketplace.ficoanalyticcloud.com:443 [marketplace.ficoanalyticcloud.com/45.60.12.108] failed: Connection refused" && !"Exception occurred while checking connection to"
+
+
+file:\/var\/log\/tomcat7\/fac-*.log && log_level:ERROR && "Connect to marketplace.ficoanalyticcloud.com:443" && !"Exception occurred while checking connection to"
+
+
+file:\/var\/log\/tomcat7\/fac-*.log && log_level:ERROR && !"Connect to marketplace.ficoanalyticcloud.com:443" && !"https:\/\/marketplace.ficoanalyticcloud.com\/keepalive.html" && !"Too Many Requests"
+
+
+file:\/var\/log\/tomcat7\/fac-*.log && log_level:ERROR && "Connect to marketplace.ficoanalyticcloud.com:443" && !"https:\/\/marketplace.ficoanalyticcloud.com\/keepalive.html"
+
+
+
+
+
+"expired forgot password tokens" AND source:(rhlappfac627.fairisaac.com rhlappfac6281.fairisaac.com)
+
+"expired forgot password tokens" AND source:(rhlappfac639.fairisaac.com rhlappfac638.fairisaac.com)
+
+
+
+NOT request:(\/service-status OR \/fac-admin-server\/service-status OR \/fac-event-server\/service-status OR \/fac-file-transfer-server\/service-status OR \/fac-login-server\/login\/service-status OR \/wp-content\/themes OR \/single-login)
+
+
+file:\/var\/log\/tomcat7\/localhost* AND NOT request:(\/service-status OR \/fac-admin-server\/service-status OR \/fac-event-server\/service-status OR \/fac-file-transfer-server\/service-status OR \/fac-login-server\/login\/service-status OR \/wp-content\/themes OR \/single-login)
+
+
+file:\/var\/log\/tomcat7\/fac-event-server\.log AND NOT request:(\/service-status OR \/fac-admin-server\/service-status OR \/fac-event-server\/service-status OR \/fac-file-transfer-server\/service-status OR \/fac-login-server\/login\/service-status OR \/wp-content\/themes OR \/single-login)
+
+
+00u18bbu4xeLSJ8HD1d8
+
+file:\/var\/log\/tomcat7\/fac-event-server*.log && environment:prod-blue && !"Caching payment plan id"
+
+
+
+
+source:"rhlappfac40169.fairisaac.com" && file:"\/var\/log\/tomcat7\/fac-admin-server.log" && !"Refreshed " && !"refreshed 0 products" && !"The new last modified date" && !"Adding and updating indexed products" && !"fetching product list" && !"AuthNRequest;SUCCESS;" && !"found 49 products"
+
+source:"rhlappfac40169.fairisaac.com" && file:"\/var\/log\/tomcat7\/fac-admin-server.log" && userName:"davegoossen@fico.com" 
+
+
+source:"rhlappfac40169.fairisaac.com" && !"Refreshed " && !"fetching product list" && !"/service-status " && !"/fac-admin-server/resources/" && !"/fac-admin-server/ext/" && !"/fac-admin-server/app/" && NOT file:( "\/var\/log\/sudo.log" OR  "\/var\/log\/secure" OR  "\/var\/log\/cron" OR  "\/var\/log\/messages") 

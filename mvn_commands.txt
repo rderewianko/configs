@@ -1,0 +1,151 @@
+sonar:sonar -pl !fac-system-test,!fac-packaging,!fac-parent -Dsonar.branch.name=$SONAR_BRANCH -Dsonar.branch=$SONAR_BRANCH -B
+
+
+
+ mvn -Pintegration -Dit.test=AppDirectClientServiceITest#testGetCompany verify
+
+------------------------------------------------------------
+FWS Sonar node details
+===========================
+su sonar  sonarqube-6.7.7/bin/linux-x86-64/sonar.sh start
+
+Token for push reports to the server
+facfwssonar : 4e39b5ac49b25bc22f8efa8956dcb276aba419d5
+
+use as below:
+        <sonar.host.url>http://10.106.27.7:9000/sonar/</sonar.host.url>
+        <sonar.login>4e39b5ac49b25bc22f8efa8956dcb276aba419d5</sonar.login>
+        <!--<sonar.password>zzx5J3j2dZgqzp3</sonar.password> -->
+
+
+-Xmx1024m -XX:MaxPermSize=256m
+-Djava.awt.headless=true
+
+mvn -s build/jenkins-settings.xml -Djava.awt.headless=true -Pintegration,integration-php clean clover:instrument test verify clover:aggregate clover:clover 
+mvn -s build/jenkins-settings.xml sonar:sonar -pl '!fac-system-test,!fac-packaging,!fac-parent' -B
+
+Without wordpress:
+-----------------
+mvn -s build/jenkins-settings.xml -Pintegration,integration-php clean clover:instrument test verify clover:aggregate clover:clover -pl '!fac-wordpress'
+mvn -s build/jenkins-settings.xml sonar:sonar -pl '!fac-system-test,!fac-packaging,!fac-parent,!fac-wordpress' -B
+
+
+------------------------------------------------------------
+
+
+-----------------------------------------------------------------
+Account for DNS mappings in AWS
+=================================
+Aws account : DMS-INT 
+Hosted Zone :   Z123VGONSQFZQ2
+
+for creating DNS mappings for URLs of type  *.portal.usw2.ficoanalyticcloud.com
+
+----------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------
+FWS FAC portal QA cluster DB nodes
+=========================================
+
+/etc/init.d/mysql start --wsrep_cluster_address="gcomm://10.106.25.27,10.106.26.129,10.106.26.130"
+
+mysql -e "show status like 'wsrep%';" -uroot -pFico@123
+
+
+
+
+/etc/init.d/mysql start --wsrep-cluster-address="gcomm://" --wsrep_sst_auth="sstuser:passw0rd"
+/etc/init.d/mysql bootstrap-pxc
+----------------------------------------------------------------------
+
+
+
+----------------------------------------------------------------------
+MVN version set:
+=========================
+
+mvn versions:set -DnewVersion=2019.2.0-SNAPSHOT
+mvn versions:commit
+----------------------------------------------------------------------
+
+
+
+
+
+AAACI1195H
+
+
+
+
+
+
+
+/etc/httpd/conf
+/etc/httpd/conf.d
+/etc/httpd/conf.modules.d
+
+
+
+
+Need your help regarding below phpunit test execution issue when "mvn -Pintegration,integration-php clean install" execute on different environments.
+
+on RHEL 7, PHP 5.6 or PHP 7.1
+[exec] 1) LoginTest::testEncDecCookie
+[exec] ErrorException: mcrypt_encrypt(): Key of size 9 not supported by this algorithm. Only keys of sizes 16, 24 or 32 supported
+[exec]
+[exec] /vol/repos/fac-portal/fac-wordpress/wp-content/plugins/fac/Module/Login.php:119
+[exec] /vol/repos/fac-portal/fac-wordpress/tests/plugins/fac/Module/LoginTest.php:45
+
+on RHEL 7, PHP 7.2
+[exec] 1) LoginTest::testEncDecCookie
+[exec] ErrorException: Function mcrypt_get_iv_size() is deprecated
+[exec]
+[exec] /vol/repos/fac-portal/fac-wordpress/wp-content/plugins/fac/Module/Login.php:117
+[exec] /vol/repos/fac-portal/fac-wordpress/tests/plugins/fac/Module/LoginTest.php:45
+
+
+on centOS 7, PHP 7.2 - No issues.
+
+
+
+
+
+ 294  rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  295  wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+  296  ll
+  297  ll wf/
+  298  mv remi-release-7.rpm wf/
+  299  cd wf/
+  300  rpm -Uvh remi-release-7.rpm epel-release-latest-7.noarch.rpm
+  301  rpm -Uvh remi-release-7.rpm
+  302  subscription-manager repos
+  303   yum-config-manager --enable remi-php72
+  304  rpm -qa | grep php
+  305  yum repolist | php
+  306  yum repolist php
+  307  yum install php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-pdo php-mysql pdo-sqlite php-xml php-mbstring php-pecl-xdebug
+  308  php -v
+  309  php -m
+  310  service httpd restart
+
+
+yum install php-pecl-xdebug
+
+yum install php72-php-pecl-xdebug
+yum install php-mbstring
+
+
+
+ErrorException: Function mcrypt_get_iv_size() is deprecated
+
+
+yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+yum-config-manager --enable remi-php72
+
+yum install bzip2
+
+tar -xzvf phantomjs-2.1.1-linux-x86_64.tar.bz2   or tar -jxf phantomjs-2.1.1-linux-x86_64.tar.bz2
+
+

@@ -1,0 +1,31 @@
+ Tomcat Shell commands
+
+
+
+ curl --user tomcat:tomcat 'http://localhost:8080/manager/text/deploy?path=/fac-login-server&update=true&war=file:/src/repo-fac-portal/fac-login-server/target/fac-login-server.war'
+ curl --user tomcat:tomcat 'http://localhost:8080/manager/text/deploy?path=/fac-admin-server&update=true&war=file:/src/repo-fac-portal/fac-admin-server/target/fac-admin-server.war'
+ curl --user tomcat:tomcat 'http://localhost:8080/manager/text/deploy?path=/fac-event-server&update=true&war=file:/src/repo-fac-portal/fac-event-server/target/fac-event-server.war'
+
+ curl --user tomcat:tomcat 'http://localhost:8080/manager/text/undeploy?path=/fac-login-server'
+ curl --user tomcat:tomcat 'http://localhost:8080/manager/text/undeploy?path=/fac-event-server'
+ curl --user tomcat:tomcat 'http://localhost:8080/manager/text/undeploy?path=/fac-admin-server'
+
+
+ curl --user tomcat:tomcat 'http://localhost:8080/manager/text/list'
+
+
+curl --user tomcat:tomcat 'http://branch.portal.usw2.ficoanalyticcloud.com:8080/manager/text/list'
+curl --user tomcat:tomcat 'http://branch.portal.usw2.ficoanalyticcloud.com:8080/manager/text/deploy?path=/fac-event-server&update=true' --upload-file /mnt/c/Users/ravikishorekamma/repos/fac-portal/fac-event-server/target/fac-event-server.war
+
+curl --user tomcat:tomcat 'http://branch.portal.usw2.ficoanalyticcloud.com:8080/manager/text/undeploy?path=/fac-event-server'
+
+
+
+
+java -Dfac.okta.use.proxy=TRUE -cp springtest-1.0-SNAPSHOT.jar com.ravi.spring.SpringApp
+
+
+ curl --proxy https://gateway.zscloud.net:9480 --location --request GET 'https://facdev.okta.com/api/v1/users/ravikishore1979@gmail.com' --header 'Accept: application/json' --header 'Authorization: SSWS 000VKAdpujq2KoWU0b14ef7Xz2GpH_e7brP3ihsTkJ
+
+
+ 
