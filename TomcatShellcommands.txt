@@ -25,7 +25,7 @@ curl --user tomcat:tomcat 'http://branch.portal.usw2.ficoanalyticcloud.com:8080/
 java -Dfac.okta.use.proxy=TRUE -cp springtest-1.0-SNAPSHOT.jar com.ravi.spring.SpringApp
 
 
- curl --proxy https://gateway.zscloud.net:9480 --location --request GET 'https://facdev.okta.com/api/v1/users/ravikishore1979@gmail.com' --header 'Accept: application/json' --header 'Authorization: SSWS 000VKAdpujq2KoWU0b14ef7Xz2GpH_e7brP3ihsTkJ
+ curl --proxy https://gateway.zscloud.net:9480 --location --request GET 'https://facdev.okta.com/api/v1/users/ravikishore1979@gmail.com' --header 'Accept: application/json' --header 'Authorization: SSWS 
 
 
  
